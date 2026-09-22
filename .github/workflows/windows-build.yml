@@ -1,0 +1,37 @@
+name: windows-build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-and-build:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install FFmpeg (tests only; not bundled)
+        run: choco install ffmpeg -y --no-progress
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Tests
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python -m pytest -q -W "always::UserWarning"
+      - name: Build exe
+        run: python -m PyInstaller packaging/TimelinerX.spec --noconfirm --clean
+      - name: Smoke test exe
+        run: |
+          dist\timelinerx-cli.exe --version
+          dist\timelinerx-cli.exe import fixtures\small.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TimelinerX-windows
+          path: |
+            dist/TimelinerX.exe
+            dist/timelinerx-cli.exe

@@ -1,0 +1,125 @@
+{
+ "semanticSegments": [
+  {
+   "startTime": "2024-06-01T08:00:00+00:00",
+   "endTime": "2024-06-01T08:18:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2500000°, 112.7500000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T08:20:00+00:00",
+   "endTime": "2024-06-01T08:38:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2490000°, 112.7510000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T08:40:00+00:00",
+   "endTime": "2024-06-01T08:58:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2480000°, 112.7520000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T09:00:00+00:00",
+   "endTime": "2024-06-01T09:18:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2470000°, 112.7530000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T09:20:00+00:00",
+   "endTime": "2024-06-01T09:38:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2460000°, 112.7540000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T09:35:00+00:00",
+   "endTime": "2024-06-01T09:41:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "48.8500000°, 2.3500000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T09:40:00+00:00",
+   "endTime": "2024-06-01T09:58:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2450000°, 112.7550000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T10:00:00+00:00",
+   "endTime": "2024-06-01T10:18:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2440000°, 112.7560000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T10:20:00+00:00",
+   "endTime": "2024-06-01T10:38:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2430000°, 112.7570000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T10:40:00+00:00",
+   "endTime": "2024-06-01T10:58:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2420000°, 112.7580000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-06-01T11:00:00+00:00",
+   "endTime": "2024-06-01T11:18:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2410000°, 112.7590000°"
+     }
+    }
+   }
+  }
+ ]
+}

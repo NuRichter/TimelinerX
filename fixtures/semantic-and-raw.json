@@ -1,0 +1,448 @@
+{
+ "semanticSegments": [
+  {
+   "startTime": "2024-08-01T08:00:00+00:00",
+   "endTime": "2024-08-01T09:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.2500000°, 112.7500000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-08-01T11:00:00+00:00",
+   "endTime": "2024-08-01T12:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-7.3000000°, 112.8000000°"
+     }
+    }
+   }
+  }
+ ],
+ "rawSignals": [
+  {
+   "position": {
+    "LatLng": "-7.2500000°, 112.7500000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:10:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2508000°, 112.7508000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:11:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2516000°, 112.7516000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:12:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2524000°, 112.7524000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:13:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2532000°, 112.7532000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:14:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2540000°, 112.7540000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:15:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2548000°, 112.7548000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:16:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2556000°, 112.7556000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:17:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2564000°, 112.7564000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:18:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2572000°, 112.7572000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:19:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2580000°, 112.7580000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:20:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2588000°, 112.7588000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:21:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2596000°, 112.7596000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:22:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2604000°, 112.7604000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:23:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2612000°, 112.7612000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:24:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2620000°, 112.7620000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:25:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2628000°, 112.7628000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:26:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2636000°, 112.7636000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:27:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2644000°, 112.7644000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:28:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2652000°, 112.7652000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:29:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2660000°, 112.7660000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:30:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2668000°, 112.7668000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:31:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2676000°, 112.7676000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:32:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2684000°, 112.7684000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:33:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2692000°, 112.7692000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:34:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2700000°, 112.7700000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:35:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2708000°, 112.7708000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:36:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2716000°, 112.7716000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:37:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2724000°, 112.7724000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:38:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2732000°, 112.7732000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:39:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2740000°, 112.7740000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:40:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2748000°, 112.7748000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:41:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2756000°, 112.7756000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:42:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2764000°, 112.7764000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:43:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2772000°, 112.7772000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:44:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2780000°, 112.7780000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:45:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2788000°, 112.7788000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:46:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2796000°, 112.7796000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:47:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2804000°, 112.7804000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:48:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2812000°, 112.7812000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:49:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2820000°, 112.7820000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:50:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2828000°, 112.7828000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:51:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2836000°, 112.7836000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:52:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2844000°, 112.7844000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:53:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2852000°, 112.7852000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:54:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2860000°, 112.7860000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:55:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2868000°, 112.7868000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:56:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2876000°, 112.7876000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:57:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2884000°, 112.7884000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:58:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2892000°, 112.7892000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T09:59:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2900000°, 112.7900000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:00:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2908000°, 112.7908000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:01:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2916000°, 112.7916000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:02:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2924000°, 112.7924000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:03:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2932000°, 112.7932000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:04:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2940000°, 112.7940000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:05:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2948000°, 112.7948000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:06:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2956000°, 112.7956000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:07:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2964000°, 112.7964000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:08:00+00:00"
+   }
+  },
+  {
+   "position": {
+    "LatLng": "-7.2972000°, 112.7972000°",
+    "accuracyMeters": 12,
+    "timestamp": "2024-08-01T10:09:00+00:00"
+   }
+  }
+ ]
+}

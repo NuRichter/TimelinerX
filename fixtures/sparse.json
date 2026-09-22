@@ -1,0 +1,92 @@
+{
+ "semanticSegments": [
+  {
+   "startTime": "2023-01-01T09:00:00+00:00",
+   "endTime": "2023-01-01T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-6.2000000°, 106.8000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2023-01-18T09:00:00+00:00",
+   "endTime": "2023-01-18T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-5.8000000°, 107.7000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2023-02-04T09:00:00+00:00",
+   "endTime": "2023-02-04T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-5.4000000°, 108.6000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2023-02-21T09:00:00+00:00",
+   "endTime": "2023-02-21T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-5.0000000°, 109.5000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2023-03-10T09:00:00+00:00",
+   "endTime": "2023-03-10T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-4.6000000°, 110.4000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2023-03-27T09:00:00+00:00",
+   "endTime": "2023-03-27T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-4.2000000°, 111.3000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2023-04-13T09:00:00+00:00",
+   "endTime": "2023-04-13T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-3.8000000°, 112.2000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2023-04-30T09:00:00+00:00",
+   "endTime": "2023-04-30T15:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-3.4000000°, 113.1000000°"
+     }
+    }
+   }
+  }
+ ]
+}

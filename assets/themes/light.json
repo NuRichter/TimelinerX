@@ -1,0 +1,55 @@
+{
+  "id": "light",
+  "name": "Light",
+  "base": "light",
+  "grading": [
+    {
+      "node": "normalize",
+      "saturation": 0.9,
+      "contrast": 1.02
+    },
+    {
+      "node": "tone_curve",
+      "points": [
+        [
+          0,
+          0.03
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    }
+  ],
+  "post": [
+    {
+      "node": "vignette",
+      "strength": 0.12,
+      "radius": 0.8,
+      "softness": 0.6
+    }
+  ],
+  "palette": {
+    "background": "#f2eef0",
+    "route": "#e90064",
+    "route_glow": "#ff4f9a",
+    "trail_old": "#e90064",
+    "marker_core": "#24191d",
+    "marker_ring": "#e90064",
+    "text_primary": "#24191d",
+    "text_secondary": "#5c4b52",
+    "card_bg": "#fff8fae6",
+    "card_border": "#00000014",
+    "attribution": "#24191dc8",
+    "grid": "#00000012"
+  },
+  "glow": {
+    "route": 0.35,
+    "marker": 0.5
+  }
+}

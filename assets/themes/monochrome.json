@@ -1,0 +1,59 @@
+{
+  "id": "monochrome",
+  "name": "Monochrome",
+  "base": "light",
+  "grading": [
+    {
+      "node": "normalize",
+      "saturation": 0.0,
+      "contrast": 1.1
+    },
+    {
+      "node": "tone_curve",
+      "points": [
+        [
+          0,
+          0.04
+        ],
+        [
+          0.4,
+          0.36
+        ],
+        [
+          1,
+          0.97
+        ]
+      ]
+    }
+  ],
+  "post": [
+    {
+      "node": "vignette",
+      "strength": 0.22,
+      "radius": 0.7,
+      "softness": 0.6
+    },
+    {
+      "node": "grain",
+      "amount": 0.01
+    }
+  ],
+  "palette": {
+    "background": "#e9e9e9",
+    "route": "#111111",
+    "route_glow": "#555555",
+    "trail_old": "#111111",
+    "marker_core": "#ffffff",
+    "marker_ring": "#111111",
+    "text_primary": "#111111",
+    "text_secondary": "#555555",
+    "card_bg": "#ffffffe0",
+    "card_border": "#00000022",
+    "attribution": "#111111c0",
+    "grid": "#00000014"
+  },
+  "glow": {
+    "route": 0.2,
+    "marker": 0.3
+  }
+}

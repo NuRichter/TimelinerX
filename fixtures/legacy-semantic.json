@@ -1,0 +1,52 @@
+{
+ "timelineObjects": [
+  {
+   "placeVisit": {
+    "location": {
+     "latitudeE7": -62088000,
+     "longitudeE7": 1068456000
+    },
+    "duration": {
+     "startTimestamp": "2019-10-01T08:00:00Z",
+     "endTimestamp": "2019-10-01T10:00:00Z"
+    }
+   }
+  },
+  {
+   "activitySegment": {
+    "startLocation": {
+     "latitudeE7": -62088000,
+     "longitudeE7": 1068456000
+    },
+    "endLocation": {
+     "latitudeE7": -69175000,
+     "longitudeE7": 1076191000
+    },
+    "duration": {
+     "startTimestamp": "2019-10-01T10:00:00+00:00",
+     "endTimestamp": "2019-10-01T13:00:00+00:00"
+    },
+    "simplifiedRawPath": {
+     "points": [
+      {
+       "latE7": -65000000,
+       "lngE7": 1072000000,
+       "timestamp": "2019-10-01T11:00:00+00:00"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "placeVisit": {
+    "location": {
+     "latitudeE7": -69175000,
+     "longitudeE7": 1076191000
+    },
+    "duration": {
+     "startTimestampMs": "1569934800000"
+    }
+   }
+  }
+ ]
+}

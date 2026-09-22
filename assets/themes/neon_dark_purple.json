@@ -1,0 +1,84 @@
+{
+  "id": "neon_dark_purple",
+  "name": "Neon Dark Purple",
+  "base": "dark",
+  "grading": [
+    {
+      "node": "normalize",
+      "saturation": 0.0,
+      "contrast": 1.12,
+      "brightness": -0.02
+    },
+    {
+      "node": "tone_curve",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0.2,
+          0.12
+        ],
+        [
+          0.55,
+          0.5
+        ],
+        [
+          1,
+          0.92
+        ]
+      ]
+    },
+    {
+      "node": "duotone",
+      "dark": "#05060a",
+      "light": "#7e22ce",
+      "amount": 0.42
+    },
+    {
+      "node": "color_balance",
+      "shadows": [
+        0.0,
+        0.0,
+        0.015
+      ],
+      "highlights": [
+        0,
+        0,
+        0
+      ],
+      "preserve_luminance": true
+    }
+  ],
+  "post": [
+    {
+      "node": "vignette",
+      "strength": 0.42,
+      "radius": 0.62,
+      "softness": 0.7
+    },
+    {
+      "node": "grain",
+      "amount": 0.012
+    }
+  ],
+  "palette": {
+    "background": "#07080d",
+    "route": "#c56bff",
+    "route_glow": "#c56bff",
+    "trail_old": "#c56bff",
+    "marker_core": "#ffffff",
+    "marker_ring": "#c56bff",
+    "text_primary": "#f4f6ff",
+    "text_secondary": "#a9b0c8",
+    "card_bg": "#0b0e18cc",
+    "card_border": "#c56bff55",
+    "attribution": "#c8cde0b0",
+    "grid": "#ffffff10"
+  },
+  "glow": {
+    "route": 1.0,
+    "marker": 1.2
+  }
+}

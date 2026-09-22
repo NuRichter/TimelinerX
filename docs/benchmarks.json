@@ -1,0 +1,103 @@
+{
+ "machine": {
+  "os": "Linux 6.18.44-fc-v37",
+  "python": "3.11.15",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "logical_cpus": 2,
+  "ram_gb": 7.8
+ },
+ "date": "2026-09-20",
+ "parse": [
+  {
+   "file_mb": 10.0,
+   "points": 118459,
+   "seconds": 0.83,
+   "mb_per_s": 12.1,
+   "mode": "in-memory"
+  },
+  {
+   "file_mb": 50.0,
+   "points": 591811,
+   "seconds": 8.6,
+   "mb_per_s": 5.8,
+   "mode": "streaming"
+  },
+  {
+   "file_mb": 100.0,
+   "points": 1183501,
+   "seconds": 17.77,
+   "mb_per_s": 5.6,
+   "mode": "streaming"
+  }
+ ],
+ "render": [
+  {
+   "resolution": "480p",
+   "size": "852x480",
+   "theme": "light",
+   "frames": 90,
+   "render_fps": 57.4,
+   "ms_per_frame": 17.4
+  },
+  {
+   "resolution": "480p",
+   "size": "852x480",
+   "theme": "neon_dark_blue",
+   "frames": 90,
+   "render_fps": 48.1,
+   "ms_per_frame": 20.8
+  },
+  {
+   "resolution": "1080p",
+   "size": "1920x1080",
+   "theme": "light",
+   "frames": 90,
+   "render_fps": 14.2,
+   "ms_per_frame": 70.2
+  },
+  {
+   "resolution": "1080p",
+   "size": "1920x1080",
+   "theme": "neon_dark_blue",
+   "frames": 90,
+   "render_fps": 11.4,
+   "ms_per_frame": 87.4
+  },
+  {
+   "resolution": "1440p",
+   "size": "2560x1440",
+   "theme": "light",
+   "frames": 90,
+   "render_fps": 8.8,
+   "ms_per_frame": 113.2
+  },
+  {
+   "resolution": "1440p",
+   "size": "2560x1440",
+   "theme": "neon_dark_blue",
+   "frames": 90,
+   "render_fps": 6.6,
+   "ms_per_frame": 150.7
+  }
+ ],
+ "end_to_end": [
+  {
+   "resolution": "720p",
+   "video_seconds": 10,
+   "frames": 300,
+   "wall_seconds": 19.7,
+   "realtime_factor": 0.51,
+   "encoder": "h264",
+   "render_frames_seconds": 18.6
+  },
+  {
+   "resolution": "1080p",
+   "video_seconds": 10,
+   "frames": 300,
+   "wall_seconds": 41.6,
+   "realtime_factor": 0.24,
+   "encoder": "h264",
+   "render_frames_seconds": 40.5
+  }
+ ]
+}

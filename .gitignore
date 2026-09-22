@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+dist/
+.venv*/
+*.egg-info/
+*.nrpart.mp4
+tests/baselines/frames/
+# secrets: never commit an API key
+carto_key.txt
+src/timelinerx/_buildinfo.py

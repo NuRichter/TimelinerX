@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest==9.1.1
+scipy==1.17.1          # perceptual hash (DCT) in the visual regression tests only
+pyinstaller==6.22.3

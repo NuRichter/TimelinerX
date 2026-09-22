@@ -1,0 +1,53 @@
+{
+  "id": "experimental_blueprint",
+  "name": "Blueprint (Experimental)",
+  "base": "light",
+  "experimental": true,
+  "grading": [
+    {
+      "node": "invert",
+      "amount": 1.0
+    },
+    {
+      "node": "normalize",
+      "saturation": 0.0,
+      "contrast": 1.2
+    },
+    {
+      "node": "duotone",
+      "dark": "#0a2a5e",
+      "light": "#9cc6ff",
+      "amount": 1.0
+    }
+  ],
+  "post": [
+    {
+      "node": "vignette",
+      "strength": 0.35,
+      "radius": 0.65,
+      "softness": 0.7
+    },
+    {
+      "node": "grain",
+      "amount": 0.01
+    }
+  ],
+  "palette": {
+    "background": "#0a2a5e",
+    "route": "#ffffff",
+    "route_glow": "#bfe0ff",
+    "trail_old": "#ffffff",
+    "marker_core": "#0a2a5e",
+    "marker_ring": "#ffffff",
+    "text_primary": "#ffffff",
+    "text_secondary": "#bcd6ff",
+    "card_bg": "#0a2a5ecc",
+    "card_border": "#ffffff40",
+    "attribution": "#ffffffb0",
+    "grid": "#ffffff18"
+  },
+  "glow": {
+    "route": 0.7,
+    "marker": 0.8
+  }
+}

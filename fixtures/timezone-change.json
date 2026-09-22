@@ -1,0 +1,48 @@
+{
+ "semanticSegments": [
+  {
+   "startTime": "2024-03-01T10:00:00+07:00",
+   "endTime": "2024-03-01T16:00:00+07:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-6.2000000°, 106.8000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-03-03T10:00:00+08:00",
+   "endTime": "2024-03-03T16:00:00+08:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "-8.6500000°, 115.2000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-03-05T10:00:00+08:00",
+   "endTime": "2024-03-05T16:00:00+08:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "1.3500000°, 103.8000000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-03-07T10:00:00+07:00",
+   "endTime": "2024-03-07T16:00:00+07:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "13.7500000°, 100.5000000°"
+     }
+    }
+   }
+  }
+ ]
+}

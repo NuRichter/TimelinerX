@@ -1,0 +1,67 @@
+{
+ "semanticSegments": [
+  {
+   "startTime": "2024-07-01T00:00:00+00:00",
+   "endTime": "2024-07-01T06:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "35.5500000°, 139.7800000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-07-01T08:00:00+00:00",
+   "endTime": "2024-07-01T15:00:00+00:00",
+   "activity": {
+    "start": {
+     "latLng": "35.5500000°, 139.7800000°"
+    },
+    "end": {
+     "latLng": "21.3200000°, -157.9200000°"
+    },
+    "topCandidate": {
+     "type": "FLYING"
+    }
+   }
+  },
+  {
+   "startTime": "2024-07-01T16:00:00+00:00",
+   "endTime": "2024-07-01T22:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "21.3200000°, -157.9200000°"
+     }
+    }
+   }
+  },
+  {
+   "startTime": "2024-07-04T00:00:00+00:00",
+   "endTime": "2024-07-04T05:30:00+00:00",
+   "activity": {
+    "start": {
+     "latLng": "21.3200000°, -157.9200000°"
+    },
+    "end": {
+     "latLng": "33.9400000°, -118.4000000°"
+    },
+    "topCandidate": {
+     "type": "FLYING"
+    }
+   }
+  },
+  {
+   "startTime": "2024-07-04T07:00:00+00:00",
+   "endTime": "2024-07-04T13:00:00+00:00",
+   "visit": {
+    "topCandidate": {
+     "placeLocation": {
+      "latLng": "33.9400000°, -118.4000000°"
+     }
+    }
+   }
+  }
+ ]
+}
