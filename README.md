@@ -1,440 +1,501 @@
-# TimelinerX
+<div align="center">
 
-TimelinerX is a Windows desktop application (also runs on Linux and
-macOS from source) that imports a Google Timeline export and renders the
-travel history as an animated map video (MP4). Processing is local: the
-Timeline file is never uploaded, there is no account and no telemetry.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/lockup_dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="assets/brand/lockup_light.png">
+  <img alt="TimelinerX" src="assets/brand/lockup_light.png" width="520">
+</picture>
 
-It builds on the algorithms of [Google Timeline Visualizer](https://github.com/mahlernim/google-timeline-visualizer)
-by mahlernim (MIT), re-implemented for the desktop and extended; see
-[Attribution](#attribution).
+### Turn your Google Timeline into a cinematic map video.
 
-* Version 1.0.0 · render engine `tlx-2.0.0` · Made with NuRichter Workspace
-* Licence: MIT (see `LICENSE` and `THIRD_PARTY_NOTICES.md`)
+Import your location history, pick a period and a look, then press **Render**. TimelinerX flies the camera along everywhere you've been and exports an MP4. Everything runs on your own computer.
 
----
+[![Download](https://img.shields.io/github/v/release/NuRichter/TimelinerX?label=Download&style=for-the-badge&color=1463e6&logo=windows&logoColor=white)](https://github.com/NuRichter/TimelinerX/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/NuRichter/TimelinerX/total?style=for-the-badge&color=0b1020&label=Downloads)](https://github.com/NuRichter/TimelinerX/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-4c9dff?style=for-the-badge)](LICENSE)
 
-## Contents
+![Windows 10/11](https://img.shields.io/badge/Windows-10%20%7C%2011-0b1020?style=flat-square&logo=windows)
+![Python](https://img.shields.io/badge/Python-3.11–3.13-0b1020?style=flat-square&logo=python&logoColor=white)
+![Qt](https://img.shields.io/badge/UI-PySide6-0b1020?style=flat-square&logo=qt)
+![FFmpeg](https://img.shields.io/badge/Encoder-FFmpeg-0b1020?style=flat-square&logo=ffmpeg)
+![Render engine](https://img.shields.io/badge/engine-tlx--2.0.0-1463e6?style=flat-square)
+![No telemetry](https://img.shields.io/badge/telemetry-none-1d7a3c?style=flat-square)
 
-1. [What it does](#what-it-does)
-2. [Features](#features)
-3. [System requirements](#system-requirements)
-4. [Installation](#installation)
-5. [Building from source](#building-from-source)
-6. [FFmpeg](#ffmpeg)
-7. [Map providers](#map-providers)
-8. [Privacy model](#privacy-model)
-9. [Supported Timeline formats](#supported-timeline-formats)
-10. [Import diagnosis and repair](#import-diagnosis-and-repair)
-11. [Rendering guide](#rendering-guide)
-12. [High-resolution renders](#high-resolution-renders)
-13. [Command line](#command-line)
-14. [Troubleshooting](#troubleshooting)
-15. [Architecture](#architecture)
-16. [Testing](#testing)
-17. [Licence, third-party notices and attribution](#licence-third-party-notices-and-attribution)
-18. [Known limitations](#known-limitations)
+**[Download](https://github.com/NuRichter/TimelinerX/releases/latest)** · **[Features](#-features)** · **[Themes](#-themes)** · **[Quick start](#-quick-start)** · **[CLI](#-command-line)** · **[FAQ](#-faq--troubleshooting)**
+
+<br>
+
+<img src="docs/readme/demo.webp" alt="TimelinerX demo: a journey from Surabaya by car and train across Java, flights to Bali and Perth, then home again" width="100%">
+
+<sub>10 days, 6,602 km, rendered in one pass. Car and train legs trace the road, and flights fly as arcs with a plane marker.<br>
+Synthetic demo data, theme <i>Neon Dark Blue</i>, offline demo basemap. The default basemap is CARTO.</sub>
+
+</div>
 
 ---
 
-## What it does
+## ✨ Features
 
-1. Import `Timeline.json` (Android on-device export, iOS export) or a Google Takeout `.zip`
-   (including legacy `Records.json` and *Semantic Location History*).
-2. Diagnose problems; optionally write a repaired copy (the original is never modified).
-3. Choose a period, route source and outlier filtering.
-4. Choose a visual theme, camera mode, titles, resolution, frame rate and encoder.
-5. Preview with the same renderer that produces the export.
-6. Render. The render is checkpointed: if the app, the computer or the power
-   fails, it resumes where it stopped.
-7. The output is verified (dimensions, frame rate, frame count, decode test)
-   before it is added to the Video Library.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-## Features
+### 🧭 Journey Builder
+Choose a period and a **zoom style** (Fixed · Balanced · Active · Close-Up). Tune **long-trip detection**, **local framing** and **pacing**, and watch a live route sketch with calm and lively duration estimates.
 
-**Import**
-* Streaming parser for files ≥ 50 MB with resumable checkpoints every ~16 MB.
-* ZIP intake with decompression-bomb, entry-count and path-traversal guards.
-* Detailed diagnostics: detected format, counts, skipped records by reason,
-  duplicates, reversed export order, timezone handling.
+</td>
+<td width="50%" valign="top">
 
-**Repair** — ten passes producing HIGH / MEDIUM / LOW confidence actions (see below),
-with HTML/JSON/text reports.
+### 🎥 A camera that behaves like a camera
+Pacing follows *visual motion*, so long flights don't dominate the video and short commutes stay visible. The camera uses zero-phase smoothing, rule-of-thirds lead room, eased intro and outro, and **Director's Cut** keyframes. Smoothness is **measured** in the test suite.
 
-**Journey** — period selection on the local calendar, semantic or detailed-first
-(raw signal) routes, conservative teleport filter, trip detection.
+</td>
+</tr>
+<tr>
+<td valign="top">
 
-**Journey Builder** — Zoom style (Fixed, Balanced, Active, Close-Up), Long-trip
-detection (Conservative, Balanced, Sensitive), Local trip framing (Off, Balanced,
-Close) and Long-trip pacing (Natural, Balanced, Faster, Fastest), with a live route
-sketch and calm/lively duration estimates. Transport modes from the export are kept;
-flights fly as arcs with a plane marker.
+### ✈️ Transport-aware routes
+Walking, bike, car/bus, train, ferry and flight modes come straight from your export. Flights are drawn as great-circle arcs flown by a plane marker.
 
-**Camera** — four zoom styles; vertex-accurate visual pacing plus screen-speed
-equalisation, optional cinematic motion blur; zero-phase
-smoothing in viewport space, C1 spline sampling, anticipation, rule-of-thirds
-lead room or centred framing, eased intro/outro using optimal zoom-pan
-interpolation, Director's-Cut keyframes. Camera smoothness is measured, not
-assumed (see [Testing](#testing)).
+</td>
+<td valign="top">
 
-**Look** — ten themes (Light, Dark, Neon Dark Blue/Red/Yellow/Green/Purple,
-Neon Cyan, Monochrome, High Contrast) plus an experimental slot, all defined
-as JSON grading node graphs; gradient trail with selective bloom, soft
-shadow, pulse marker, vignette, deterministic film grain; title layouts
-(corner, centred, minimal, lower third, ending card) inside a 5 % title-safe area.
+### 🎨 10 themes + your own
+Light, Dark, five Neon variants, Neon Cyan, Monochrome and High Contrast. Each one is a JSON grading node graph, so you can write your own as a plugin.
 
-**Output** — 480p, 720p, 1080p, 1440p, 2160p, 4K (4096 px long edge), 8K
-(7680 px long edge); 16:9, 9:16, 1:1 or custom even dimensions; 24/30/60 fps;
-H.264/HEVC; NVENC → Quick Sync → AMF → software selection with explicit
-fallback notices; optional two-pass (software encoders); experimental HDR10 export.
+</td>
+</tr>
+<tr>
+<td valign="top">
 
-**Other** — own audio track with local beat detection and ducking; render
-queue with ETA, render speed, CPU and memory; render-graph inspector; video
-library; headless CLI; watch folder; split-screen / sequential comparison;
-plugin SDK for themes and map providers; UI in English, Bahasa Indonesia, Español, Français, Deutsch, Português (Brasil), Русский, العربية (RTL), 中文 and 日本語;
-light and dark appearance; keyboard navigation.
+### 📺 Up to 8K, any aspect ratio
+Output from 480p to 8K, in 16:9, 9:16, 1:1 or a custom size, at 24/30/60 fps, in H.264 or HEVC. TimelinerX picks **NVENC → Quick Sync → AMF → software** automatically and tells you why it chose each one. HDR10 export is experimental.
 
-## System requirements
+</td>
+<td valign="top">
+
+### 🛡️ Renders that survive crashes
+The render pipeline is a 15-node DAG with checkpoints. If the app, your PC or the power dies mid-render, it **resumes where it stopped**. Every output is verified before it goes into your library.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### 🩺 Diagnose & repair
+Is your Timeline file broken, truncated or reversed? Ten repair passes produce HIGH / MEDIUM / LOW confidence fixes with an HTML report. Your original file is **never** modified.
+
+</td>
+<td valign="top">
+
+### 🌏 10 languages
+English, **Bahasa Indonesia**, Español, Français, Deutsch, Português (Brasil), Русский, العربية (RTL), 中文, 日本語. Dates, numbers and units in the video are localised too.
+
+</td>
+</tr>
+</table>
+
+<details>
+<summary><b>…and more</b> (audio, compare mode, CLI, plugins)</summary>
+<br>
+
+- 🎵 **Your own soundtrack** (MP3/WAV/FLAC), with local beat detection so the ending lands on a beat, plus ducking under titles and a fade-out
+- 🌀 **Cinematic motion blur** (180° shutter, adaptive sub-frames)
+- 🆚 **Compare** two renders split-screen or back to back, e.g. *2024 vs 2025*
+- 📂 **Watch folder**: drop a Timeline file in and get a video out
+- 🧾 **Render queue** with ETA, render fps, CPU and memory, and a render-graph inspector
+- 🎓 **Built-in import tutorial** (Android & iPhone), exportable as MP4
+- 🧩 **Plugin SDK** for themes (JSON) and map providers (Python, opt-in)
+- ⌨️ Full keyboard navigation, light & dark appearance, reduced-motion setting
+
+</details>
+
+---
+
+## 🖥️ A look inside
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/ui-journey-dark.png">
+  <img src="docs/readme/ui-journey-light.png" alt="Journey Builder" width="100%">
+</picture>
+<sub><b>Journey Builder</b>: period, distance, flights and long trips at a glance</sub>
+
+</div>
+
+<details>
+<summary><b>📸 More screenshots</b> (Visual Settings, Preview, Analysis, Render Queue)</summary>
+<br>
+
+<table>
+<tr>
+<td width="50%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/ui-visual-dark.png">
+  <img src="docs/readme/ui-visual-light.png" alt="Visual Settings">
+</picture>
+<p align="center"><sub><b>Visual Settings</b>: themes, map, trail & effects</sub></p>
+</td>
+<td width="50%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/ui-preview-dark.png">
+  <img src="docs/readme/ui-preview-light.png" alt="Preview">
+</picture>
+<p align="center"><sub><b>Preview</b>: the same renderer as the export</sub></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="docs/readme/ui-analysis-dark.png" alt="Timeline Analysis">
+<p align="center"><sub><b>Timeline Analysis</b>: what your export contains</sub></p>
+</td>
+<td width="50%">
+<img src="docs/readme/ui-queue-dark.png" alt="Render Queue">
+<p align="center"><sub><b>Render Queue</b>: resumable, checkpointed renders</sub></p>
+</td>
+</tr>
+</table>
+
+</details>
+
+---
+
+## 🎨 Themes
+
+Click a theme to see it full size. All frames below come from the same moment of the same journey.
+
+<table>
+<tr>
+<td align="center"><a href="docs/readme/themes/neon-dark-blue.png"><img src="docs/readme/themes/neon-dark-blue.png" width="260"></a><br><sub><b>Neon Dark Blue</b></sub></td>
+<td align="center"><a href="docs/readme/themes/neon-cyan.png"><img src="docs/readme/themes/neon-cyan.png" width="260"></a><br><sub><b>Neon Cyan</b></sub></td>
+<td align="center"><a href="docs/readme/themes/neon-dark-purple.png"><img src="docs/readme/themes/neon-dark-purple.png" width="260"></a><br><sub><b>Neon Dark Purple</b></sub></td>
+</tr>
+<tr>
+<td align="center"><a href="docs/readme/themes/neon-dark-green.png"><img src="docs/readme/themes/neon-dark-green.png" width="260"></a><br><sub><b>Neon Dark Green</b></sub></td>
+<td align="center"><a href="docs/readme/themes/neon-dark-red.png"><img src="docs/readme/themes/neon-dark-red.png" width="260"></a><br><sub><b>Neon Dark Red</b></sub></td>
+<td align="center"><a href="docs/readme/themes/neon-dark-yellow.png"><img src="docs/readme/themes/neon-dark-yellow.png" width="260"></a><br><sub><b>Neon Dark Yellow</b></sub></td>
+</tr>
+<tr>
+<td align="center"><a href="docs/readme/themes/light.png"><img src="docs/readme/themes/light.png" width="260"></a><br><sub><b>Light</b></sub></td>
+<td align="center"><a href="docs/readme/themes/dark.png"><img src="docs/readme/themes/dark.png" width="260"></a><br><sub><b>Dark</b></sub></td>
+<td align="center"><a href="docs/readme/themes/monochrome.png"><img src="docs/readme/themes/monochrome.png" width="260"></a><br><sub><b>Monochrome</b></sub></td>
+</tr>
+<tr>
+<td align="center"><a href="docs/readme/themes/high-contrast.png"><img src="docs/readme/themes/high-contrast.png" width="260"></a><br><sub><b>High Contrast</b></sub></td>
+<td align="center"><a href="docs/readme/themes/experimental-blueprint.png"><img src="docs/readme/themes/experimental-blueprint.png" width="260"></a><br><sub><b>Blueprint</b> <i>(experimental)</i></sub></td>
+<td align="center" valign="middle"><sub>🧩 <b>Make your own</b><br>Copy <code>assets/themes/light.json</code><br>→ <a href="docs/PLUGINS.md">Plugin SDK</a></sub></td>
+</tr>
+</table>
+
+### 📐 One journey, every format
+
+<table>
+<tr>
+<td align="center" valign="bottom"><img src="docs/readme/aspect-16x9.png" height="240"><br><sub><b>16:9</b> · YouTube</sub></td>
+<td align="center" valign="bottom"><img src="docs/readme/aspect-1x1.png" height="240"><br><sub><b>1:1</b> · Feed</sub></td>
+<td align="center" valign="bottom"><img src="docs/readme/aspect-9x16.png" height="240"><br><sub><b>9:16</b> · Reels / TikTok / Shorts</sub></td>
+</tr>
+</table>
+
+<div align="center">
+<img src="docs/readme/ending-card.png" width="80%" alt="Ending card with total distance, trips and days">
+<br><sub>Every video ends with an <b>ending card</b>: total distance, trips and days, counting up.</sub>
+</div>
+
+---
+
+## 🚀 Quick start
+
+```mermaid
+flowchart LR
+    A["📱 Export Timeline<br/>Android / iPhone / Takeout"] --> B["📥 Import<br/>diagnose & repair"]
+    B --> C["🧭 Journey Builder<br/>period · zoom · pacing"]
+    C --> D["🎨 Visual & Video<br/>theme · 4K · 60 fps"]
+    D --> E["👁️ Preview"]
+    E --> F["🎬 Render<br/>checkpointed · verified"]
+    F --> G["📼 MP4 in your<br/>Video Library"]
+    style A fill:#e2ecfd,stroke:#1463e6,color:#111827
+    style F fill:#1463e6,stroke:#1463e6,color:#ffffff
+    style G fill:#0b1020,stroke:#4c9dff,color:#e8ecf4
+```
+
+1. **Download** [`TimelinerX.exe`](https://github.com/NuRichter/TimelinerX/releases/latest). No installer and no Python needed.
+2. **Install FFmpeg 5.1+** and point to it in *Settings → Rendering* (or add it to `PATH`).
+3. **Add a free CARTO API key** in *Settings → Maps* ([get one here](https://carto.com/basemaps/apikey/)). If you'd rather skip this, use the *Plain* or *MBTiles* map.
+4. **Export your Timeline** from your phone (the app has a built-in tutorial), then **Import** it.
+5. Build the journey, choose a look, **Preview**, then **Render**. 🎉
+
+> [!NOTE]
+> Builds are not code-signed yet, so Windows SmartScreen will warn you on first launch. Click **More info → Run anyway**.
+
+<details>
+<summary><b>📱 How do I get my Timeline file?</b></summary>
+<br>
+
+Google Timeline now lives **on your phone**, not in the cloud.
+
+| Phone | Where |
+|---|---|
+| **Android** | *Settings → Location → Location services → Timeline → Export Timeline data* → saves `Timeline.json` |
+| **iPhone** | Google Maps → your profile picture → *Your Timeline* → ⋯ → *Location & privacy settings* → *Export Timeline data* |
+| **Old Takeout** (before 2024) | The `.zip` from [takeout.google.com](https://takeout.google.com) works as is, including `Records.json` and *Semantic Location History* |
+
+Menu names can differ slightly between phone brands and app versions. The in-app tutorial (Dashboard → *Import tutorial*) walks through both.
+
+</details>
+
+<details>
+<summary><b>💻 System requirements</b></summary>
+<br>
 
 | | Minimum | Recommended |
 |---|---|---|
 | OS | Windows 10 64-bit (1809+) | Windows 11 64-bit |
 | CPU | 2 cores | 6+ cores |
 | RAM | 8 GB | 16 GB (32 GB for 2160p and above) |
-| GPU | not required | NVIDIA/Intel/AMD GPU with a hardware H.264/HEVC encoder |
-| Disk | 2 GB free + ~2× the expected video size | SSD |
-| Other | FFmpeg 5.1+ with ffprobe | FFmpeg 6/7 with libx264, libx265 and zscale |
+| GPU | not required | NVIDIA / Intel / AMD with hardware H.264/HEVC |
+| Disk | 2 GB free + ~2× the video size | SSD |
+| Other | FFmpeg 5.1+ with ffprobe | FFmpeg 6/7 with libx264, libx265, zscale |
 
-The in-app environment scan reports what it detected and derives a
-Comfortable / Heavy / Extreme recommendation. The scoring rules are shown in
-the app; they are estimates, not performance guarantees.
+The in-app environment scan checks your machine and gives a *Comfortable / Heavy / Extreme* recommendation for each resolution.
 
-## Installation
+</details>
 
-**Windows executable.** Run `TimelinerX.exe`. No Python installation
-is needed. Install FFmpeg (see [FFmpeg](#ffmpeg)) unless your build bundles it.
-Unsigned builds trigger a SmartScreen prompt on first launch.
-
-**From source (any OS).**
+<details>
+<summary><b>🐍 Run from source</b> (Windows, macOS, Linux)</summary>
+<br>
 
 ```bash
+git clone https://github.com/NuRichter/TimelinerX.git
+cd TimelinerX
 python -m venv .venv
 . .venv/bin/activate            # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m timelinerx   # GUI (run from the repository with PYTHONPATH=src, or pip install -e .)
+pip install -e .
+timelinerx-gui                  # desktop app
+timelinerx --help               # command line
 ```
 
-or `pip install -e .` and use the `timelinerx-gui` / `timelinerx` commands.
+</details>
 
-## Building from source
-
-Tested toolchain: Python 3.11 (3.12 and 3.13 also supported; the build script picks one automatically), the versions pinned in `requirements*.txt`,
-PyInstaller 6.22.3.
+<details>
+<summary><b>🔨 Build the Windows executable</b></summary>
+<br>
 
 ```powershell
-# Windows, from the repository root
 build_windows.bat                      # venv, pinned deps, tests, PyInstaller
-build_windows.bat -SkipTests -OneDir   # folder build (recommended for LGPL re-linking of Qt)
+build_windows.bat -SkipTests -OneDir   # folder build (easier LGPL re-linking of Qt)
 build_windows.bat -FFmpegDir C:\ffmpeg\bin -SignCert cert.pfx -SignPassword ****
 ```
 
-Outputs:
+Outputs: `dist\TimelinerX.exe` (GUI), `dist\timelinerx-cli.exe` (console) and `*.sha256` checksums.
+CI (`.github/workflows/windows-build.yml`) runs the tests and builds both executables on `windows-latest`.
 
-* `dist\TimelinerX.exe` — the desktop application
-* `dist\timelinerx-cli.exe` — console build of the same program for scripts (JSON-lines output, exit codes)
-* `*.sha256` checksums
+> [!WARNING]
+> `build_windows.bat -CartoKey …` (or a local `carto_key.txt`) **embeds** a CARTO key in the `.exe`, and anyone with the file can extract it. For public releases, build without a key and let users enter their own.
 
-Code signing is optional (`-SignCert`); it needs `signtool.exe` from the
-Windows SDK. The CI workflow `.github/workflows/windows-build.yml` runs the
-tests and builds both executables on `windows-latest`.
+</details>
 
-`python scripts/clean_build.py` removes build artefacts.
+---
 
-Environment variables: `TIMELINERX_HOME` (put data, cache and config in one
-folder — portable installs, tests), `TIMELINERX_FFMPEG_DIR` (FFmpeg folder),
-`CARTO_BASEMAP_API_KEY` (optional CARTO key), `QT_QPA_PLATFORM=offscreen`
-(headless tests).
+## 🔒 Privacy, by design
 
-## FFmpeg
+<table>
+<tr>
+<td align="center" width="25%">🏠<br><b>Local only</b><br><sub>Your Timeline is read on your PC and never uploaded or copied</sub></td>
+<td align="center" width="25%">🙅<br><b>No account</b><br><sub>No sign-in, no telemetry, no automatic update downloads</sub></td>
+<td align="center" width="25%">🧹<br><b>Clean logs</b><br><sub>Coordinates in logs are replaced with <code>&lt;coord&gt;</code></sub></td>
+<td align="center" width="25%">📴<br><b>Fully offline</b><br><sub>With the <i>Plain</i> or <i>MBTiles</i> map, TimelinerX makes zero network requests</sub></td>
+</tr>
+</table>
 
-TimelinerX runs `ffmpeg` and `ffprobe` as separate processes. Lookup order:
-path set in *Settings → Rendering*, `TIMELINERX_FFMPEG_DIR`, an `ffmpeg` folder
-next to the executable, then `PATH`.
+<details>
+<summary>What <i>does</i> touch the network?</summary>
+<br>
 
-At startup and before every render, FFmpeg is probed: version, encoders,
-filters, and a 0.5-second **test encode for each hardware encoder** — an
-encoder listed by FFmpeg may still fail without a GPU or driver. A render
-never starts if FFmpeg, ffprobe or a usable encoder is missing.
+Only map tile requests to the tile server you choose (CARTO by default). These reveal *which map areas* a video shows. Use Plain, MBTiles or *Offline mode* to avoid them. Repair reports include the coordinates of the records they changed, so treat them as private.
 
-Encoder selection: NVENC → Quick Sync → AMF → libx264/libx265. With
-*Automatic*, the chosen encoder and the reason for skipping the others are
-shown in the queue and stored in the video metadata. If you explicitly pick
-an encoder that is unavailable, the render stops and asks before using a
-different one. H.264 hardware encoders are limited to 4096 px per side; 8K
-therefore needs HEVC or libx264.
+</details>
 
-If you redistribute a build with FFmpeg bundled, read the FFmpeg section of
-`THIRD_PARTY_NOTICES.md` first.
+---
 
-## Map providers
+## ⚙️ How it works
 
-**CARTO needs an API key.** Since 2026 CARTO stamps "API KEY REQUIRED" on every tile requested
-without one. Get a free key (personal, research, non-profit use; 5 million tiles/month) at
-<https://carto.com/basemaps/apikey/> and paste it into *Settings → Maps → CARTO API key*
-(*Verify* checks it online). Other sources, in order: `--carto-key` (CLI),
-`TIMELINERX_CARTO_KEY` / `CARTO_BASEMAP_API_KEY`, or a key built into the executable
-(`build_windows.bat -CartoKey …`, or the first line of an untracked `carto_key.txt`). A built-in
-key can be extracted from the `.exe` by anyone who has it and is shared by all its users — for a
-public release prefer asking users to enter their own key. Without a key, TimelinerX refuses to
-render CARTO maps rather than produce a watermarked video.
+Every render runs as a DAG of 15 checkpointed nodes. Independent nodes run in parallel. Each result is fingerprinted, so a resume skips everything that's already done.
 
-| Provider | Network | Notes |
+```mermaid
+flowchart LR
+    subgraph D["Data"]
+      I[import] --> N[normalize] --> FL[filter] --> J[build_journey]
+    end
+    subgraph CM["Camera & Map"]
+      J --> C[plan_camera] --> T[prepare_tiles] --> PC[prepare_cache]
+    end
+    AA[analyze_audio] --> C
+    PF[preflight] --> R
+    PC --> R[render_frames]
+    J --> R
+    subgraph O["Output"]
+      R --> E[encode] --> V[verify] --> M[finalize_metadata] --> L[add_to_library]
+      V --> TH[generate_thumbnail] --> L
+    end
+    AA --> E
+    style R fill:#1463e6,color:#fff,stroke:#1463e6
+    style V fill:#1d7a3c,color:#fff,stroke:#1d7a3c
+```
+
+**Deterministic:** the same Timeline, project, map cache and engine version give identical frames (fixed grain seed, bundled fonts). Every video records its `render_engine_version`.
+Want more detail? See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/BENCHMARKS.md`](docs/BENCHMARKS.md).
+
+<details>
+<summary><b>🗂️ Supported Timeline formats</b></summary>
+<br>
+
+| Format | Source | Root |
 |---|---|---|
-| CARTO (default; light or dark style follows the theme) | yes | © OpenStreetMap contributors © CARTO, rendered in every frame. Rate-limited, cached on disk. |
-| CARTO Voyager | yes | as above |
-| MBTiles file | no | your own raster `.mbtiles`; its attribution metadata is rendered |
-| Plain | no | no tiles: themed background with a graticule |
-| Plugins | depends | see `docs/PLUGINS.md` |
-
-Before rendering, every tile the camera will need is prefetched. If any tile
-is unavailable, the render asks whether to continue with placeholder tiles —
-it never substitutes them silently. *Offline mode* uses the cache only.
-Dark themes (Dark, Neon, High Contrast) are designed for dark basemaps; with a
-light-only provider such as Voyager or a light MBTiles file, prefer Light or
-Monochrome.
-
-## Privacy model
-
-* The Timeline file is read locally and never modified, uploaded or copied
-  into projects (projects store its path and SHA-256).
-* No account, no telemetry, no automatic update downloads.
-* Map tile requests reveal which map areas a video shows (roughly where the
-  route goes) to the tile server. Use Plain, MBTiles or offline mode to avoid
-  any network request.
-* Log files never contain coordinates: number pairs that look like coordinates
-  are replaced with `<coord>` unless you enable *Settings → Privacy → Write raw
-  coordinates to local debug logs*.
-* The video library stores metadata only. The `.nrmeta.json` sidecar next to
-  each video stores the settings used, without keyframe coordinates.
-* Temporary render files live in the per-user data folder and are deleted
-  after a successful render (or kept for resume after an interruption; they
-  can be discarded from the Render Queue).
-* Repair reports contain the coordinates of the records they changed, because
-  they stay on your computer. Do not share them if you consider that private.
-
-## Supported Timeline formats
-
-| Format | Where it comes from | Root |
-|---|---|---|
-| On-device Timeline (object) | Android: *Settings → Location → Timeline → Export* | `{"semanticSegments": [...], "rawSignals": [...]}` |
+| On-device Timeline (object) | Android export | `{"semanticSegments": [...], "rawSignals": [...]}` |
 | On-device Timeline (array) | iOS Google Maps export | `[ {...segment...}, ... ]` |
-| Takeout Records | Google Takeout (before 2024) | `{"locations": [ {latitudeE7, longitudeE7, timestamp or timestampMs}, ... ]}` |
-| Takeout Semantic Location History | Google Takeout (before 2024), monthly files | `{"timelineObjects": [ {placeVisit} / {activitySegment} ]}` |
-| Takeout `.zip` | Google Takeout | the files above inside the archive |
+| Takeout Records | Google Takeout (pre-2024) | `{"locations": [...]}` |
+| Semantic Location History | Google Takeout (pre-2024) | `{"timelineObjects": [...]}` |
+| Takeout `.zip` | Google Takeout | any of the above inside the archive |
 
-Coordinates may be `"lat°, lon°"`, `"geo:lat,lon"`, wrapped objects, or E7
-integers. Timestamps may carry offsets, be UTC, lack a timezone (then they are
-not trusted for ordering across records) or be epoch milliseconds.
+Coordinates can be `"lat°, lon°"`, `"geo:lat,lon"`, wrapped objects or E7 integers. Timestamps can be offset, UTC, naive or epoch-ms. Files of 50 MB or more are streamed with resumable checkpoints.
 
-## Import diagnosis and repair
+</details>
 
-If an import fails or reports skipped records, *Diagnose & repair…* runs these
-passes on the raw file:
+<details>
+<summary><b>🩺 Diagnose & repair passes</b></summary>
+<br>
 
 1. Forensic scan (encoding, BOM, NUL bytes, size)
-2. Structural recovery (trailing data, trailing commas, salvage of complete records from truncated/corrupted files)
-3. Schema normalisation (E7 in strings, epoch-ms timestamps)
-4. Coordinate repair (out-of-range, Null Island, swapped latitude/longitude)
-5. Timestamp repair (unparseable, implausible dates, end before start)
-6. Ordering repair (newest-first exports, out-of-order segments)
-7. Duplicate cleanup (byte-identical records)
-8. Outlier analysis (teleport excursions; robust MAD z-score of speed)
-9. Semantic reconstruction (missing startTime or activity endpoints from paths)
+2. Structural recovery (trailing data or commas, salvaging truncated files)
+3. Schema normalisation (E7 in strings, epoch-ms)
+4. Coordinate repair (out of range, Null Island, swapped lat/lon)
+5. Timestamp repair (unparseable, implausible, end before start)
+6. Ordering repair (newest-first exports)
+7. Duplicate cleanup
+8. Outlier analysis (teleports, MAD z-score of speed)
+9. Semantic reconstruction
 10. Validation (the repaired file is re-imported)
-11. Report
 
-Each proposed action is classified:
+| Confidence | Meaning | Default |
+|---|---|---|
+| 🟢 **HIGH** | deterministic, provably correct | applied |
+| 🟡 **MEDIUM** | heuristic or statistical | applied, can be unticked |
+| 🔴 **LOW** | ambiguous (might be a real flight) | only if you tick it |
 
-* **HIGH** — deterministic and provably correct (BOM/UTF-16 decoding, E7→degrees, exact duplicates). Selected by default.
-* **MEDIUM** — heuristic or statistical (teleport excursions, reversed order, salvage). Selected by default, can be unticked.
-* **LOW** — ambiguous (lat/lon swap without context, end/start swap, a single fast hop that may be a real flight). Never applied unless you tick it.
+Output goes next to the source: `<name>.fixed.json` plus an HTML, JSON and text report. The original file is never overwritten.
 
-Outputs, next to the source file: `<name>.fixed.json`, `<name>.repair-report.html`,
-`<name>.repair-report.json`, `<name>.repair-log.txt`. The source file is never
-overwritten.
+</details>
 
-## Rendering guide
+---
 
-* **Pacing.** *Visual motion + zoom* (default) spends screen time in
-  proportion to how much ground moves across the view and how much the camera
-  zooms, so long flights do not dominate and short commutes stay visible.
-* **Camera modes.** Fixed (one zoom), Steady (calm overview), Dynamic (zooms in
-  on local movement, out for transfers), Close-Up (tight local detail), Active
-  (energetic, for short social clips).
-* **Composition.** Rule of thirds keeps the marker behind the centre with open
-  space in the direction of travel; Centred is the minimal alternative.
-* **Director's Cut.** In Preview, *Add keyframe here* stores the current view;
-  edit time, span, hold and ramp in *Visual Settings → Camera*. Keyframes take
-  precedence over automatic framing and use the same easing.
-* **Audio.** Your own MP3/WAV/FLAC file; optional alignment of the ending
-  zoom-out to the nearest detected beat (±0.75 s), ducking under titles and a
-  fade-out. Off by default.
-* **Two-pass** (software encoders): longer render, more consistent bitrate.
-* **HDR10 (experimental).** The render is SDR; this option places it in an
-  HEVC HDR10 container (BT.2020, PQ) with SDR white at 203 nits. It needs
-  libx265 and the zscale filter; if missing you are asked before falling back to SDR.
-* **Stop vs. Cancel.** *Stop (keep progress)* leaves checkpoints so the render
-  appears under *Interrupted renders*; *Cancel and discard* deletes them.
+## ⌨️ Command line
 
-## High-resolution renders
+The CLI runs the same pipeline as the app. Use `timelinerx-cli.exe` on Windows, or `timelinerx` / `python -m timelinerx` from source.
 
-For outputs of 1440p and above (or ≥ 3840 px wide) the Video Settings page
-shows a warning based on the environment scan: RAM, VRAM, verified encoders
-and free disk space, with an estimate of the temporary disk space needed.
-It never blocks the render and never downscales automatically.
-Measured throughput on a 2-core machine without a GPU is in `docs/BENCHMARKS.md`.
+```bash
+# create a project and render it in 4K60 with the hardware encoder
+timelinerx new-project --timeline Timeline.json --out trip.nrproj \
+    --start 2026-07-01 --end 2026-07-10 --theme neon_cyan --zoom-style balanced
+timelinerx render --project trip.nrproj --output trip.mp4 --resolution 2160p --fps 60 --encoder nvenc --json
+```
 
-## Command line
-
-The CLI uses the same pipeline as the GUI. From source: `python -m timelinerx <command>`;
-Windows build: `timelinerx-cli.exe <command>`.
+<details>
+<summary><b>All commands & exit codes</b></summary>
+<br>
 
 ```text
-new-project  --timeline T.json --out p.nrproj [--name N --start YYYY-MM-DD --end YYYY-MM-DD --resolution 1080p ...]
-render       --project p.nrproj [--output out.mp4 --resolution 2160p --fps 60 --encoder nvenc --two-pass --hdr
+new-project  --timeline T.json --out p.nrproj [--name --start --end --resolution --theme --zoom-style ...]
+render       --project p.nrproj [--output --resolution --fps --encoder --two-pass --hdr --motion-blur
              --accept-fallback --allow-placeholder-tiles --overwrite --json]
 resume       --job-dir <dir> [--json]
 import       T.json                       # diagnostics as JSON
-repair       T.json [--dry-run --accept-low --accept ID ... --reject ID ... --out-dir D]
+repair       T.json [--dry-run --accept-low --accept ID --reject ID --out-dir D]
 preview      --project p.nrproj --out frame.png [--frame N --preview-resolution 720p]
-compare      --a a.mp4 --b b.mp4 --out c.mp4 [--mode split|sequential --label-a 2023 --label-b 2024]
+compare      --a a.mp4 --b b.mp4 --out c.mp4 [--mode split|sequential --label-a 2025 --label-b 2026]
 watch        --folder IN --preset p.nrproj --out-dir OUT [--once]
+tutorial     # export the import tutorial as MP4
 scan         [--no-hw-test]
 themes | jobs [--clean] | exit-codes
 ```
 
-With `--json`, progress is printed as one JSON object per line (events such as
-`node_started`, `node_progress` with ETA and render fps, `segment_committed`,
-`fallback`, `job_done`, `result`, `error`). Exit codes: 0 success; 2 usage;
-10–13 import; 20 project; 30–32 FFmpeg/encoder/fallback consent; 40 storage;
-50 map tiles; 60 cancelled; 61 render failed; 62 verification failed;
-70 plugin (`exit-codes` prints the table).
+With `--json`, progress is printed as JSON lines (`node_started`, `node_progress` with ETA and fps, `segment_committed`, `fallback`, `job_done`, `result`, `error`).
 
-If a fallback is needed and the CLI is not interactive, the render stops with
-exit code 32 unless `--accept-fallback` (or `--allow-placeholder-tiles` for tiles) was given.
+| Code | Meaning | Code | Meaning |
+|---|---|---|---|
+| `0` | success | `40` | storage |
+| `2` | usage | `50` | map tiles |
+| `10–13` | import | `60` | cancelled |
+| `20` | project | `61` | render failed |
+| `30–32` | FFmpeg / encoder / fallback consent | `62` | verification failed |
+| | | `70` | plugin |
 
-## Troubleshooting
+</details>
 
-| Symptom | What to do |
-|---|---|
-| "FFmpeg was not found" | Install FFmpeg, or set its folder in Settings → Rendering, then *Test*. |
-| Hardware encoder not used | Settings → Rendering → *Test* shows each encoder's test-encode error (often a missing or old GPU driver). |
-| Import says "not JSON" / "truncated" | Use *Diagnose & repair…*; import the `.fixed.json` it writes. |
-| Map tiles missing | Check the network; the render asks before using placeholders. For no network at all use Plain or MBTiles. |
-| Render interrupted | Render Queue → *Interrupted renders* → *Resume*. From the CLI: `resume --job-dir …` (the path is printed when a render is interrupted). |
-| "Output file already exists" | Choose another name or confirm overwriting. |
-| Verification failed | The file was not added to the library; the job files remain for diagnosis (Advanced diagnostics → Open FFmpeg log). |
-| Timeline changed since the project was saved | Re-import the Timeline in the project to confirm the new file. |
-| SmartScreen warning | Expected for unsigned builds. |
+---
 
-Logs: *Settings → Storage → Open logs*.
+## ❓ FAQ & troubleshooting
 
-## Architecture
+<details>
+<summary><b>"FFmpeg was not found"</b></summary>
+<br>Install FFmpeg, set its folder in <i>Settings → Rendering</i> and click <b>Test</b>. Lookup order: Settings → <code>TIMELINERX_FFMPEG_DIR</code> → an <code>ffmpeg</code> folder next to the exe → <code>PATH</code>.
+</details>
 
-```
-src/timelinerx/
-  core/        errors (exit-code categories), FallbackDecision/FallbackPolicy, geodesy, easing & filters
-  timeline/    value parsing, streaming reader, extractor/parser, outlier filter, column model
-  repair/      forensic repair engine and reports
-  journeys/    period/route-source selection, filtering, trip legs, pacing
-  camera/      framing layer + cinema layer, FramePlan, jerk verification
-  maps/        tile providers, disk cache, compositor (zoom cross-fade)
-  rendering/   theme node graph & post FX, Qt frame renderer, fonts
-  encoding/    FFmpeg discovery, probe, encoder matrix, process control
-  pipeline/    render DAG with checkpoints, render job, preview, progress/ETA, watch folder, compare
-  audio/       local onset/tempo analysis, audio filter graph
-  environment/ hardware scan and recommendation
-  projects/    .nrproj model and validation;  storage/ library (SQLite) and settings
-  plugins/     plugin loader;  i18n/ en.json, id.json;  ui/ PySide6 desktop UI;  cli/ headless CLI
-```
+<details>
+<summary><b>My map says "API KEY REQUIRED"</b></summary>
+<br>Since 2026, CARTO watermarks every tile requested without a key. Get a free key (personal, research and non-profit use, 5M tiles/month) at <a href="https://carto.com/basemaps/apikey/">carto.com/basemaps/apikey</a> and paste it into <i>Settings → Maps</i>. TimelinerX refuses to render watermarked tiles rather than hand you a ruined video.
+</details>
 
-The render pipeline is a DAG (`pipeline/render_job.py`) of 15 nodes: preflight,
-analyze_audio, import, normalize, filter, build_journey, plan_camera,
-prepare_tiles, prepare_cache, render_frames, encode, verify,
-finalize_metadata, generate_thumbnail, add_to_library. Independent nodes run in
-parallel. Each node's result is checkpointed with a fingerprint of its inputs
-and of its dependencies' results; `render_frames` additionally commits one
-encoded segment at a time. More detail: `docs/ARCHITECTURE.md`.
+<details>
+<summary><b>My GPU encoder isn't used</b></summary>
+<br><i>Settings → Rendering → Test</i> shows each encoder's test-encode error. The usual cause is a missing or old GPU driver. H.264 hardware encoders max out at 4096 px, so use HEVC or libx264 for 8K.
+</details>
 
-Determinism: identical Timeline, project, map cache and renderer version give
-identical frames (fixed grain seed, bundled fonts, no randomness). Every
-project and video records `render_engine_version`.
+<details>
+<summary><b>Import says "not JSON" / "truncated"</b></summary>
+<br>Run <b>Diagnose & repair…</b> and import the <code>.fixed.json</code> it writes.
+</details>
 
-## Testing
+<details>
+<summary><b>The render was interrupted (crash, power cut)</b></summary>
+<br>Go to <i>Render Queue → Interrupted renders → Resume</i>. From the CLI, run <code>timelinerx resume --job-dir …</code>. Frames that were already rendered are not redone.
+</details>
 
-```bash
-pip install -r requirements-dev.txt
-QT_QPA_PLATFORM=offscreen python -m pytest -q
-python scripts/make_fixtures.py            # regenerate synthetic fixtures
-python scripts/update_visual_baseline.py   # re-record perceptual-hash baseline after an intended visual change
-python scripts/benchmark.py                # writes docs/BENCHMARKS.md
-```
+<details>
+<summary><b>Known limitations</b></summary>
+<br>
 
-* **Unit**: coordinate/timestamp parsing (E7, `geo:`), projection, great-circle
-  interpolation, easing continuity, zoom-pan interpolation, outlier filter,
-  repair engine, presets/projects, resolutions, encoder selection, ETA, i18n
-  completeness, log sanitising.
-* **Camera verification (Section VI.1)**: for every mode, the maximum
-  frame-to-frame acceleration of pan and zoom (viewport units) must stay below
-  fixed thresholds; the uncorrected upstream-style path is measured for
-  comparison (zoom acceleration is reduced by more than 4×). The marker must
-  stay inside the frame; rule-of-thirds must place it behind the centre.
-* **Integration**: full renders (all frame rates, aspect ratios), SIGKILL
-  during *Encode* followed by resume without re-rendering frames, SIGKILL
-  during *Render Frames* followed by resume of the remaining segments,
-  cancellation with no surviving FFmpeg process, local tile server (download,
-  cache, offline, missing tiles requiring consent), audio beat detection and
-  muxing, HDR10 output, comparison videos, CLI exit codes and JSON lines,
-  watch folder, GUI smoke test.
-* **Visual regression**: DCT perceptual hashes of 20 reference frames compared
-  with `tests/baselines/phash.json`; drift above 6 bits raises a warning, not
-  a failure.
-* **Fixtures**: synthetic only (`scripts/make_fixtures.py`) plus the upstream
-  test fixtures. No real Timeline data.
+- Hardware encoders (NVENC / Quick Sync / AMF) are selected only after a successful test encode, but they haven't been tested on real GPUs yet.
+- Rendering is CPU-bound (Qt raster). Motion blur makes renders about 2–4× slower.
+- HDR10 is experimental: the video is graded in SDR and placed in an HDR container.
+- `.zip` imports restart from the beginning if they're interrupted. Plain `.json` imports resume.
+- CJK, Arabic and Cyrillic text use system fonts, so glyph shapes depend on your installed fonts.
 
-## Licence, third-party notices and attribution
+</details>
 
-TimelinerX is released under the MIT License (`LICENSE`).
+---
 
-### Attribution
+## 🙏 Credits & license
 
-Portions of the timeline parsing, projection, outlier filtering, trip
-detection, pacing and camera framing logic are adapted from **Google Timeline
-Visualizer** © 2025 mahlernim, MIT License. The upstream copyright notice is
-reproduced in `LICENSE`. `THIRD_PARTY_NOTICES.md` lists exactly which parts are
-derived, which are new, the third-party dependencies and fonts, and the map
-data terms (© OpenStreetMap contributors, © CARTO).
+TimelinerX is released under the **[MIT License](LICENSE)**.
 
-## Known limitations
+Parts of the parsing, projection, outlier filtering, trip detection, pacing and camera framing logic are adapted from
+**[Google Timeline Visualizer](https://github.com/mahlernim/google-timeline-visualizer)** © 2025 mahlernim (MIT), then re-implemented for the desktop and extended.
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) lists exactly which parts are derived, plus all dependencies, fonts and map data terms.
+Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors © [CARTO](https://carto.com/attributions).
+The README demo uses synthetic data and a basemap drawn from [Natural Earth](https://www.naturalearthdata.com/).
 
-* The Windows `.exe` has to be built on Windows (PyInstaller does not
-  cross-compile). The build scripts and CI workflow are provided; the
-  development environment of this release was Linux, where the same spec was
-  verified by building and running a Linux executable.
-* No GPU encoder was available while developing; NVENC, Quick Sync and AMF
-  paths are implemented and selected only after a successful test encode, but
-  they were exercised here only through the fallback logic, not on real hardware.
-* Rendering is CPU-bound (Qt raster painting). On the 2-core test machine a
-  10-second 1080p video took about 40 seconds end to end; see `docs/BENCHMARKS.md`.
-* HDR10 export is experimental: the image is graded in SDR and mapped into an
-  HDR container; it is not HDR-mastered content.
-* Import checkpoints apply to uncompressed `.json` files; `.zip` imports restart from the beginning if interrupted.
-* The CARTO tile service's availability and terms are outside this project's control.
-* The single-file `.exe` makes replacing the bundled Qt libraries harder; use the one-folder build if you need straightforward LGPL re-linking.
-* Ten UI languages. CJK, Arabic and Cyrillic text use system fonts as fallbacks (Yu Gothic / Microsoft YaHei / Segoe UI on Windows), so exact glyph shapes in videos depend on the fonts installed.
-* The CARTO key check and keyed tile downloads could not be exercised against CARTO's servers in
-  the build environment (no network access to CARTO); the code follows CARTO's documented URL
-  format (`…/{z}/{x}/{y}.png?key=…`) and is covered by unit tests with a local tile server.
-* The import tutorial draws generic phone screens. Menu names follow Google's current help
-  (September 2026) but can differ slightly between phone brands and app versions.
-* Cinematic motion blur renders 2–6 sub-frames for moving frames: expect roughly 2–4× longer renders.
+<div align="center">
+<br>
+<img src="assets/brand/mark_square.png" width="64" alt="TimelinerX mark">
+
+**Made with NuRichter Workspace**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-nurichter-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/nurichter/)
+[![GitHub](https://img.shields.io/badge/GitHub-NuRichter-181717?style=flat-square&logo=github)](https://github.com/NuRichter)
+
+<sub>If TimelinerX turned your year into something worth watching, a ⭐ helps others find it.</sub>
+
+</div>
